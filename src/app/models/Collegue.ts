@@ -1,4 +1,4 @@
-export class Collegue {
+export default class Collegue {
     private _matricule?:string;
     private _nom:string;
     private _prenoms:string;
@@ -22,16 +22,16 @@ export class Collegue {
         return this._nom;
     }
     get prenoms() {
-        return this.prenoms;
+        return this._prenoms;
     }
     get email() {
-        return this.email;
+        return this._email;
     }
     get dateDeNaissance() {
-        return this.dateDeNaissance;
+        return this._dateDeNaissance;
     }
     get photoUrl() {
-        return this.photoUrl;
+        return this._photoUrl;
     }
     set matricule(matricule:string) {
         this._matricule = matricule;
