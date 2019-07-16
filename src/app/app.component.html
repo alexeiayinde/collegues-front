@@ -1,3 +1,14 @@
- <!--The content below is only a placeholder and can be replaced.-->
-<br/>
- <app-collegue [col]="collegue"></app-collegue>
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="row justify-content-center mt-2 mb-4">
+    <h1>Administration Collègue</h1>
+    <br/>
+</div>
+
+<div class="row">
+    <div class="col-6">
+        <app-recherche-collegue-par-nom></app-recherche-collegue-par-nom>
+    </div>
+    <div class="col-6">
+        <app-collegue [col]="collegue"></app-collegue>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+<div class="container-fluide">
+    <form>
+        <div class="row align-items-center">
+            <div class="col-2 ml-4">
+                <label for="rechercheParNom">Recherche par nom</label>
+            </div>
+            <div class="col-4">
+                <input type="text" class="form-control" id="rechercheParNom" placeholder="Rechercher">
+            </div>
+            <div class="col-4">
+                <button type="button" class="btn btn-dark" (click)="rechercherParNom()">Rechercher</button>
+            </div>
+        </div>
+    </form>
+</div>
+<br/>
+<div *ngIf="rechercher == true">
+    <ul>
+        <li *ngFor="let obj of liste">{{obj.matricule}}</li>
+    </ul>
+</div>
