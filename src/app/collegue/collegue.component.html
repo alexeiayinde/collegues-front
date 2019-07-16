@@ -1,36 +1,91 @@
 <div class="container-fluide">
     <div class="col-4 ml-2">
-        <div class="card mb-3" style="max-width: 540px;">
+        <div class="card mb-3" style="max-width: 600px;">
             <div class="row no-gutters">
-                <div class="col-md-4">
+                <div class="col-md-4" style="max-width: 180px;">
                     <div class="m-2">
-                        <img src="{{col.photoUrl}}" width="180" height="200" class="card-img"  alt="photoID">
+                        <img src="{{col.photoUrl}}" height="200" class="card-img" alt="photoID">
                     </div>
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
                         <div class="row">
                             <div class="col">
-                                <p>
-                                    <strong>Matricule</strong> <br /><strong>Nom</strong> <br /><strong>Prénoms</strong> <br /><strong>Date de naissance</strong> <br/><strong>Email</strong>
-                                </p>
+                                <strong>Matricule</strong>
                             </div>
                             <div class="col">
-                                <p>
-                                    {{col.matricule}} <br />{{col.nom}} <br />{{col.prenoms}} <br />{{col.dateDeNaissance.getDate()}}/{{col.dateDeNaissance.getMonth()+1}}/{{col.dateDeNaissance.getFullYear()}} <br/>{{col.email}}
-                                </p>
+                                {{col.matricule}}
                             </div>
                         </div>
-
+                        <div class="row">
+                            <div class="col">
+                                <strong>Nom</strong>
+                            </div>
+                            <div class="col">
+                                {{col.nom | uppercase}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <strong>Prénoms</strong>
+                            </div>
+                            <div class="col">
+                                {{col.prenoms}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <strong>Date de naissance</strong>
+                            </div>
+                            <div class="col">
+                                {{col.dateDeNaissance | date:'dd/MM/yyyy'}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <strong>Email</strong>
+                            </div>
+                            <div class="col">
+                                <div *ngIf="modifier == true; else elseModifier">
+                                    <form>
+                                        <input type="text" placeholder="abc@abs.com">
+                                    </form>
+                                </div>
+                                <ng-template #elseModifier>
+                                    {{col.email}}
+                                </ng-template>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div *ngIf="modifier == true">
+                                    <strong>PhotoUrl</strong>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div *ngIf="modifier == true">
+                                    <form>
+                                        <input type="text" placeholder="https://exemple.com">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="d-flex justify-content-end m-1">
-                <a href="#" class="btn btn-light" role="button" aria-pressed="true" (click)="modifierCollegue()">Modifier</a>
+            <div class="d-flex justify-content-center m-1">
+                <div *ngIf="modifier == true; else elseBouton">
+                    <button type="button" class="btn btn-dark" (click)="validerModif()">Valider</button>
+                </div>
+                <ng-template #elseBouton>
+                    <button type="button" class="btn btn-dark" (click)="modifierCollegue()">Modifier</button>
+                </ng-template>
             </div>
         </div>
     </div>
-    <div class="d-flex justify-content-left ml-4">
-        <a href="#" class="btn btn-light" role="button" aria-pressed="true" (click)="creerCollegue()">Créer un nouveau collègue</a>
+    <div class="col-4 ml-2">
+        <div *ngIf="modifier == false">
+            <a href="#" (click)="creerCollegue()">Créer un nouveau collègue</a>
+        </div>
     </div>
 </div>
