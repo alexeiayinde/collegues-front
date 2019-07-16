@@ -9,7 +9,6 @@ import { DataService } from '../services/data.service';
 export class RechercheCollegueParNomComponent implements OnInit {
 
   @Input() listeMatricules:string[];
-  rechercher:boolean = false;
 
   constructor(private _serv:DataService) { }
 
@@ -18,10 +17,9 @@ export class RechercheCollegueParNomComponent implements OnInit {
 
   rechercherParNom(nom:string) {
     if(nom=="Ayinde") {
-      this.rechercher = true;
       this.listeMatricules = this._serv.rechercherParNom(nom);
     } else {
-      this.rechercher = false;
+      this.listeMatricules = [];
     }
   }
 

@@ -13,11 +13,10 @@ export class CollegueComponent implements OnInit {
 
   col:Collegue;
 
-  constructor(private _serv:DataService) {
-    this.col = this._serv.recupererCollegueCourant();
-   }
+  constructor(private _serv:DataService) {}
 
   ngOnInit() {
+    this.col = this._serv.recupererCollegueCourant();
   }
 
   modifierCollegue() {
