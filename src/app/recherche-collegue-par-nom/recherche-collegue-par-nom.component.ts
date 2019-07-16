@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {matricules} from '../mock/matricules.mock'
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-recherche-collegue-par-nom',
@@ -8,10 +8,10 @@ import {matricules} from '../mock/matricules.mock'
 })
 export class RechercheCollegueParNomComponent implements OnInit {
 
-  @Input() liste:any[];
+  @Input() listeMatricules:string[];
   rechercher:boolean = false;
 
-  constructor() { }
+  constructor(private _serv:DataService) { }
 
   ngOnInit() {
   }
@@ -19,7 +19,7 @@ export class RechercheCollegueParNomComponent implements OnInit {
   rechercherParNom(nom:string) {
     if(nom=="Ayinde") {
       this.rechercher = true;
-      this.liste = matricules;
+      this.listeMatricules = this._serv.rechercherParNom(nom);
     } else {
       this.rechercher = false;
     }
