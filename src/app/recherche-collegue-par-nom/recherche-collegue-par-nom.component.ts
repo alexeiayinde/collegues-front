@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { DataService } from '../services/data.service';
 })
 export class RechercheCollegueParNomComponent implements OnInit {
 
-  @Input() listeMatricules:string[];
+  listeMatricules:string[];
 
   constructor(private _serv:DataService) { }
 
@@ -17,7 +17,7 @@ export class RechercheCollegueParNomComponent implements OnInit {
 
   rechercherParNom(nom:string) {
     if(nom=="Ayinde") {
-      this.listeMatricules = this._serv.rechercherParNom(nom);
+      this._serv.rechercherParNom(nom).subscribe(matriculesVenusDuServeur => (this.listeMatricules = matriculesVenusDuServeur));
     } else {
       this.listeMatricules = [];
     }
