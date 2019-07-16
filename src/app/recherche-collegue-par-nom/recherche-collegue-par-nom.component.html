@@ -5,10 +5,10 @@
                 <label for="rechercheParNom">Recherche par nom</label>
             </div>
             <div class="col-4">
-                <input type="text" class="form-control" id="rechercheParNom" placeholder="Rechercher">
+                <input type="text" class="form-control" id="rechercheParNom" #saisie placeholder="Rechercher">
             </div>
             <div class="col-4">
-                <button type="button" class="btn btn-dark" (click)="rechercherParNom()">Rechercher</button>
+                <button type="button" class="btn btn-dark" (click)="rechercherParNom(saisie.value)">Rechercher</button>
             </div>
         </div>
     </form>

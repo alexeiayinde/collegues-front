@@ -16,9 +16,13 @@ export class RechercheCollegueParNomComponent implements OnInit {
   ngOnInit() {
   }
 
-  rechercherParNom() {
-    this.rechercher = true;
-    this.liste = matricules;
+  rechercherParNom(nom:string) {
+    if(nom=="Ayinde") {
+      this.rechercher = true;
+      this.liste = matricules;
+    } else {
+      this.rechercher = false;
+    }
   }
 
 }
