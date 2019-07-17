@@ -10,13 +10,16 @@ import { DataService } from '../services/data.service';
 export class CollegueComponent implements OnInit {
 
   modifier:boolean = false;
-
-  col:Collegue;
+  matricule:string;
+  col = new Collegue("Test", "Test", "Test", "test@test.fr", new Date('December 15, 2005 15:24:00'),"https://www.unamur.be/en/sci/chemistry/rco/membres-images/inconnu/image");
 
   constructor(private _serv:DataService) {}
 
   ngOnInit() {
-    this.col = this._serv.recupererCollegueCourant();
+    this._serv.abonnement().subscribe(matricule => {
+      this.matricule = matricule;
+      this._serv.recupererCollegueCourant(this.matricule).subscribe(collegue => this.col = collegue);
+    });
   }
 
   modifierCollegue() {

@@ -15,5 +15,5 @@
 </div>
 <br/>
 <ul>
-    <li *ngFor="let matricule of listeMatricules">{{matricule}}</li>
+    <li *ngFor="let matricule of listeMatricules"><button class="btn btn-light mb-1" (click)="selectionnerCollegue(matricule)">{{matricule}}</button></li>
 </ul>

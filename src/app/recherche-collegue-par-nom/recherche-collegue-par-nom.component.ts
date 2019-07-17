@@ -16,11 +16,11 @@ export class RechercheCollegueParNomComponent implements OnInit {
   }
 
   rechercherParNom(nom:string) {
-    if(nom=="Ayinde") {
       this._serv.rechercherParNom(nom).subscribe(matriculesVenusDuServeur => (this.listeMatricules = matriculesVenusDuServeur));
-    } else {
-      this.listeMatricules = [];
-    }
+  }
+
+  selectionnerCollegue(matricule:string) {
+    this._serv.publier(matricule);
   }
 
 }
