@@ -1,6 +1,7 @@
-import { Component, OnInit, Input,} from '@angular/core';
+import { Component, OnInit, Input, } from '@angular/core';
 import Collegue from '../models/Collegue';
 import { DataService } from '../services/data.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-collegue',
@@ -9,16 +10,27 @@ import { DataService } from '../services/data.service';
 })
 export class CollegueComponent implements OnInit {
 
-  modifier:boolean = false;
-  matricule:string;
-  col = new Collegue("Test", "Test", "Test", "test@test.fr", new Date('December 15, 2005 15:24:00'),"https://www.unamur.be/en/sci/chemistry/rco/membres-images/inconnu/image");
+  modifier: boolean = false;
+  matricule: string;
+  col = new Collegue("", "", "", "", new Date(), "https://www.unamur.be/en/sci/chemistry/rco/membres-images/inconnu/image");
+  isError: boolean = false;
+  erreur: string;
 
-  constructor(private _serv:DataService) {}
+  constructor(private _serv: DataService) { }
 
   ngOnInit() {
     this._serv.abonnement().subscribe(matricule => {
       this.matricule = matricule;
-      this._serv.recupererCollegueCourant(this.matricule).subscribe(collegue => this.col = collegue);
+      this._serv.recupererCollegueCourant(this.matricule)
+        .subscribe(collegue => {
+          this.isError = false;
+          this.col = collegue;
+        },
+          (error: HttpErrorResponse) => {
+            this.isError = true;
+            this.erreur = error.status + ' - ' + error.error;
+          }
+      );
     });
   }
 

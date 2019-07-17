@@ -8,12 +8,24 @@
                 <input type="text" class="form-control" id="rechercheParNom" #saisie placeholder="Rechercher">
             </div>
             <div class="col-4">
-                <button type="button" class="btn btn-dark" (click)="rechercherParNom(saisie.value)">Rechercher</button>
+                <button type="button" class="btn btn-info" (click)="rechercherParNom(saisie.value)">Rechercher</button>
             </div>
         </div>
     </form>
+    <br/>
+    <div class="row ml-4" *ngIf="isError == false; else errorBlock">
+        <div class="list-group">
+            <a *ngFor="let matricule of listeMatricules" href="#" class="list-group-item list-group-item-action " (click)="selectionnerCollegue(matricule)">{{matricule}}
+            </a>
+        </div>
+    </div>
+
+    <ng-template #errorBlock>
+        <div class="col-8">
+            <div class="alert alert-danger ml-2" role="alert">
+                Erreur de type : {{erreur}}
+            </div>
+        </div>
+    </ng-template>
+
 </div>
-<br/>
-<ul>
-    <li *ngFor="let matricule of listeMatricules"><button class="btn btn-light mb-1" (click)="selectionnerCollegue(matricule)">{{matricule}}</button></li>
-</ul>
