@@ -1,25 +1,27 @@
-import { Component, OnInit, Input, } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, } from '@angular/core';
 import Collegue from '../models/Collegue';
 import { DataService } from '../services/data.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-collegue',
   templateUrl: './collegue.component.html',
   styleUrls: ['./collegue.component.css']
 })
-export class CollegueComponent implements OnInit {
+export class CollegueComponent implements OnInit, OnDestroy {
 
   modifier: boolean = false;
   matricule: string;
   col:Collegue;
   isError: boolean = false;
   erreur: string;
+  actionSub:Subscription;
 
   constructor(private _serv: DataService) { }
 
   ngOnInit() {
-    this._serv.abonnement().subscribe(matricule => {
+    this.actionSub = this._serv.abonnement().subscribe(matricule => {
       this.matricule = matricule;
       this._serv.recupererCollegueCourant(this.matricule)
         .subscribe(collegue => {
@@ -44,6 +46,10 @@ export class CollegueComponent implements OnInit {
 
   validerModif() {
     this.modifier = false;
+  }
+
+  ngOnDestroy() {
+    this.actionSub.unsubscribe();
   }
 
 }
