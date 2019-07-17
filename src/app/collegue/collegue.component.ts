@@ -12,7 +12,7 @@ export class CollegueComponent implements OnInit {
 
   modifier: boolean = false;
   matricule: string;
-  col = new Collegue("", "", "", "", new Date(), "https://www.unamur.be/en/sci/chemistry/rco/membres-images/inconnu/image");
+  col:Collegue;
   isError: boolean = false;
   erreur: string;
 

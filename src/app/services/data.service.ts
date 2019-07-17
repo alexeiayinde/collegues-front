@@ -24,7 +24,9 @@ export class DataService {
   constructor(private httpClient:HttpClient) { }
 
   rechercherParNom(nom:string):Observable<string[]> {
-    return this.httpClient.get<string[]>(URL_BACKEND+'?nom='+nom);
+    if (nom != "") {
+      return this.httpClient.get<string[]>(URL_BACKEND+'?nom='+nom);
+    }
   }
 
   recupererCollegueCourant(matricule:string):Observable<Collegue> {

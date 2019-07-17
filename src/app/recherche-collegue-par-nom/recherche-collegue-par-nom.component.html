@@ -14,10 +14,15 @@
     </form>
     <br/>
     <div class="row ml-4" *ngIf="isError == false; else errorBlock">
-        <div class="list-group">
-            <a *ngFor="let matricule of listeMatricules" href="#" class="list-group-item list-group-item-action " (click)="selectionnerCollegue(matricule)">{{matricule}}
-            </a>
+        <div class="alert alert-danger ml-2" role="alert" *ngIf="matriculeExists == true; else matriculeExistsBlock">
+            Collègue(s) introuvable(s) !
         </div>
+        <ng-template #matriculeExistsBlock>
+            <div class="list-group">
+                <a *ngFor="let matricule of listeMatricules" href="#" class="list-group-item list-group-item-action " (click)="selectionnerCollegue(matricule)">{{matricule}}
+                </a>
+            </div>
+        </ng-template>
     </div>
 
     <ng-template #errorBlock>

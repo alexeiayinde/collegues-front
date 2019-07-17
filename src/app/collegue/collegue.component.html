@@ -1,4 +1,4 @@
-<div class="container-fluide">
+<div class="container-fluide" *ngIf="col != undefined">
     <div class="col ml-2 " *ngIf="isError == false; else erreurBlock">
         <div class="card shadow bg-white rounded" style="max-width: 700px;">
             <div class="card-header">
@@ -51,7 +51,7 @@
                                 <div class="col">
                                     <div *ngIf="modifier == true; else elseModifier">
                                         <form>
-                                            <input type="text" placeholder="abc@abs.com">
+                                            <input type="text" value="{{col.email}}">
                                         </form>
                                     </div>
                                     <ng-template #elseModifier>
@@ -68,7 +68,7 @@
                                 <div class="col">
                                     <div *ngIf="modifier == true">
                                         <form>
-                                            <input type="text" placeholder="https://exemple.com">
+                                            <input type="text" value="{{col.photoUrl}}">
                                         </form>
                                     </div>
                                 </div>
