@@ -32,4 +32,8 @@ export class DataService {
   recupererCollegueCourant(matricule:string):Observable<Collegue> {
     return this.httpClient.get<Collegue>(URL_BACKEND+'/'+matricule);
   }
+
+  modifierCollegue(matricule:string, collegue:Collegue) {
+    return this.httpClient.patch<Collegue>(URL_BACKEND+'/'+matricule, collegue);
+  }
 }

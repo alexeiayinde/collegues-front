@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
 })
 export class CollegueComponent implements OnInit, OnDestroy {
 
-  modifier: boolean = false;
+  modifier: boolean;
   matricule: string;
   col:Collegue;
   isError: boolean = false;
@@ -20,11 +20,12 @@ export class CollegueComponent implements OnInit, OnDestroy {
 
   constructor(private _serv: DataService) { }
 
-  ngOnInit() {
+  ngOnInit() {    
     this.actionSub = this._serv.abonnement().subscribe(matricule => {
       this.matricule = matricule;
       this._serv.recupererCollegueCourant(this.matricule)
         .subscribe(collegue => {
+          this.modifier = false;
           this.isError = false;
           this.col = collegue;
         },
@@ -45,7 +46,13 @@ export class CollegueComponent implements OnInit, OnDestroy {
   }
 
   validerModif() {
-    this.modifier = false;
+    this._serv.modifierCollegue(this.col.matricule, this.col).subscribe(() => {
+      this.modifier = false;
+    }, 
+      (error:HttpErrorResponse) => {
+        this.isError = true;
+        this.erreur = error.status + ' - ' + error.error;
+      })
   }
 
   ngOnDestroy() {
