@@ -24,9 +24,9 @@ export class DataService {
   constructor(private httpClient:HttpClient) { }
 
   rechercherParNom(nom:string):Observable<string[]> {
-    if (nom != "") {
+
       return this.httpClient.get<string[]>(URL_BACKEND+'?nom='+nom);
-    }
+
   }
 
   recupererCollegueCourant(matricule:string):Observable<Collegue> {
@@ -35,5 +35,14 @@ export class DataService {
 
   modifierCollegue(matricule:string, collegue:Collegue) {
     return this.httpClient.patch<Collegue>(URL_BACKEND+'/'+matricule, collegue);
+  }
+
+  creerCollegue(collegue:Collegue):Observable<Collegue> {
+    return this.httpClient.post<Collegue>(URL_BACKEND, {
+      "nom":collegue.nom,
+      "prenoms":collegue.prenoms,
+      "email":collegue.email,
+      "dateDeNaissance":collegue.dateDeNaissance,
+      "photoUrl":collegue.photoUrl });
   }
 }

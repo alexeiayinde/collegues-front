@@ -6,8 +6,7 @@ export default class Collegue {
     private _dateDeNaissance:Date;
     private _photoUrl:string;
 
-    constructor(matricule:string, nom:string, prenoms:string, email:string, dateDeNaissance:Date, photoUrl:string) {
-        this._matricule=matricule;
+    constructor(nom:string, prenoms:string, email:string, dateDeNaissance:Date, photoUrl:string) {
         this._nom=nom;
         this._prenoms=prenoms;
         this._email=email;

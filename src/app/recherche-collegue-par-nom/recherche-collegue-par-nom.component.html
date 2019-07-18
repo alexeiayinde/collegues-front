@@ -14,7 +14,7 @@
     </form>
     <br/>
     <div class="row ml-4" *ngIf="isError == false; else errorBlock">
-        <div class="alert alert-danger ml-2" role="alert" *ngIf="matriculeExists == true; else matriculeExistsBlock">
+        <div class="alert alert-danger ml-2" role="alert" *ngIf="matriculeExists == false; else matriculeExistsBlock">
             Collègue(s) introuvable(s) !
         </div>
         <ng-template #matriculeExistsBlock>

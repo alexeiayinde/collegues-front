@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy, } from '@angular/core';
+import { Component, OnInit, OnDestroy, } from '@angular/core';
 import Collegue from '../models/Collegue';
 import { DataService } from '../services/data.service';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -11,7 +11,8 @@ import { Subscription } from 'rxjs';
 })
 export class CollegueComponent implements OnInit, OnDestroy {
 
-  modifier: boolean;
+  phaseModifier: boolean;
+  phaseCreer:boolean;
   matricule: string;
   col:Collegue;
   isError: boolean = false;
@@ -20,12 +21,13 @@ export class CollegueComponent implements OnInit, OnDestroy {
 
   constructor(private _serv: DataService) { }
 
-  ngOnInit() {    
+  ngOnInit() {
+    this.phaseCreer = false;
     this.actionSub = this._serv.abonnement().subscribe(matricule => {
       this.matricule = matricule;
       this._serv.recupererCollegueCourant(this.matricule)
         .subscribe(collegue => {
-          this.modifier = false;
+          this.phaseModifier = false;
           this.isError = false;
           this.col = collegue;
         },
@@ -38,21 +40,28 @@ export class CollegueComponent implements OnInit, OnDestroy {
   }
 
   modifierCollegue() {
-    this.modifier = true;
+    this.phaseModifier = true;
   }
 
   creerCollegue() {
-    console.log("Création de collègue");
+    this.phaseCreer = true;
   }
 
   validerModif() {
     this._serv.modifierCollegue(this.col.matricule, this.col).subscribe(() => {
-      this.modifier = false;
+      this.phaseModifier = false;
+      this.isError = false;
     }, 
       (error:HttpErrorResponse) => {
         this.isError = true;
         this.erreur = error.status + ' - ' + error.error;
       })
+  }
+
+  validerCreer($event) {
+    if ($event == true) { 
+      this.ngOnInit();
+    }
   }
 
   ngOnDestroy() {

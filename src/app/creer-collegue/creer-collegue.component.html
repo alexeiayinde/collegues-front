@@ -1,0 +1,103 @@
+<div class="container-fluid" *ngIf="creerOk==false; else creerOkBlock">
+    <div class="col ml-2 " *ngIf="isError == false; else erreurBlock">
+        <div class="card shadow bg-white rounded" style="max-width: 700px;">
+            <div class="card-header">
+            </div>
+            <div class="card-body ">
+                <form #collegueCreer="ngForm">
+                    <div class="row no-gutters">
+                        <div class="col-md-4" style="max-width: 180px;">
+                            <div class="m-2">
+                                <img src="https://i.pinimg.com/originals/c7/4a/77/c74a77f0206f2e6af2c99ad5ddb52795.jpg" height="200" class="card-img" alt="photoID">
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <strong>Nom</strong>
+                                    </div>
+                                    <div class="col">
+                                        <input class="mb-1" type="text" name="nom" [(ngModel)]="col.nom" required minlength="3" #nom="ngModel" />
+                                        <p *ngIf="(nom.dirty || nom.touched) && nom.invalid">
+                                            <span class="bg-danger text-white rounded-lg p-1">Le nom est invalide</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <strong>Prénoms</strong>
+                                    </div>
+                                    <div class="col">
+                                        <input class="mb-1" type="text" name="prenom" [(ngModel)]="col.prenoms" required minlength="3" #prenom="ngModel" />
+                                        <p class="bg-danger text-white rounded-lg p-1" *ngIf="(prenom.dirty || prenom.touched) && prenom.invalid">
+                                            Le(s) prénom(s) est(sont) invalide(s)
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <strong>Date de naissance</strong>
+                                    </div>
+                                    <div class="col">
+                                        <input class="mb-1" type="date" name="dateDeNaissance" [(ngModel)]="col.dateDeNaissance" required #dateDeNaissance="ngModel"
+                                        />
+                                        <p *ngIf="(dateDeNaissance.dirty || dateDeNaissance.touched) && dateDeNaissance.invalid">
+                                            <span class="bg-danger text-white rounded-lg p-1">La date de naissance est invalide</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <strong>Email</strong>
+                                    </div>
+                                    <div class="col">
+                                        <input class="mb-1" type="text" name="email" [(ngModel)]="col.email" required minlength="4" #email="ngModel">
+                                        <p *ngIf="(email.dirty || email.touched) && email.invalid">
+                                            <span class="bg-danger text-white rounded-lg p-1">L'email est invalide</span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <strong>PhotoUrl</strong>
+                                    </div>
+                                    <div class="col">
+                                        <input class="mb-1" type="text" name="photoUrl" [(ngModel)]="col.photoUrl" required minlength="7" #photoUrl="ngModel" />
+                                        <p *ngIf="(photoUrl.dirty || photoUrl.touched) && photoUrl.invalid">
+                                            <span class="bg-danger text-white rounded-lg p-1">La photoUrl est invalide</span>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-around m-1">
+                        <button [disabled]="collegueCreer.invalid" class="btn btn-info" (click)="creer()">Créer</button>
+                        <button class="btn btn-info" (click)="annuler()">Annuler</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <ng-template #erreurBlock>
+        <div class="col-6">
+            <div class="alert alert-danger ml-3" role="alert">
+                Erreur de type : {{erreur}}
+            </div>
+            <div class="d-flex justify-content-center m-1">
+                <button class="btn btn-info" (click)="recommencer()">Ok</button>
+            </div>
+        </div>
+    </ng-template>
+</div>
+<ng-template #creerOkBlock>
+    <div class="col-6">
+        <div class="alert alert-success" role="alert">
+            Un nouveau collègue a été créé avec succès !
+        </div>
+        <div class="d-flex justify-content-center m-1">
+            <button class="btn btn-info" (click)="valider()">Ok</button>
+        </div>
+    </div>
+</ng-template>

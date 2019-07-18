@@ -10,7 +10,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class RechercheCollegueParNomComponent implements OnInit {
 
   listeMatricules: string[];
-  matriculeExists: boolean = false;
+  matriculeExists: boolean = true;
   isError: boolean = false;
   erreur: string;
 
@@ -25,9 +25,9 @@ export class RechercheCollegueParNomComponent implements OnInit {
         .subscribe(matriculesVenusDuServeur => {
           this.isError = false;
           if (matriculesVenusDuServeur.length == 0) {
-            this.matriculeExists = true;
-          } else {
             this.matriculeExists = false;
+          } else {
+            this.matriculeExists = true;
           }
           this.listeMatricules = matriculesVenusDuServeur;
         },
