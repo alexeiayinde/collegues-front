@@ -1,4 +1,4 @@
-<div class="container-fluid" *ngIf="creerOk==false; else creerOkBlock">
+<div *ngIf="creerOk==false; else creerOkBlock">
     <div class="col ml-2 " *ngIf="isError == false; else erreurBlock">
         <div class="card shadow bg-white rounded" style="max-width: 700px;">
             <div class="card-header">
@@ -38,7 +38,7 @@
                                     <div class="col">
                                         <strong>Date de naissance</strong>
                                     </div>
-                                    <div class="col">
+                                    <div class="col"> <!-- TODO date de naissance required mais empeche pas cliquer sur bouton 'Créer' -->
                                         <input class="form-control mb-1" type="date" name="dateDeNaissance" [(ngModel)]="col.dateDeNaissance" required max="2011-07-20" #dateDeNaissance="ngModel"
                                         />
                                         <div class="invalid-feedback mb-1" *ngIf="(dateDeNaissance.dirty || dateDeNaissance.touched) && dateDeNaissance.invalid">La date de naissance est invalide (âge min. = 18 ans)

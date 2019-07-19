@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, Subject } from 'rxjs';
 import Collegue from '../models/Collegue';
+import PhotoDTO from '../models/PhotoDTO';
 import { HttpClient, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import {environment} from '../../environments/environment' 
 
@@ -44,5 +45,9 @@ export class DataService {
       "email":collegue.email,
       "dateDeNaissance":collegue.dateDeNaissance,
       "photoUrl":collegue.photoUrl });
+  }
+
+  rechercherPhotos():Observable<PhotoDTO[]> {
+    return this.httpClient.get<PhotoDTO[]>(URL_BACKEND+'/photos');
   }
 }

@@ -1,1 +1,17 @@
-<p>galerie works!</p>
+<div class="row justify-content-center" >
+    <div class="card text-white bg-info m-3" style="max-width: 18rem;" *ngFor="let photoDTO of listePhotosDTO">
+        <div class="card-header"></div>
+        <div class="card-body">
+            <img src="{{photoDTO.photoUrl}}" alt="photoUrl" width="210" height="250"/>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="row justify-content-center">
+    <div class="card border-info m-3" style="max-width: 18rem;" *ngFor="let photoDTO of listePhotosDTO">
+        <div class="card-header"></div>
+        <div class="card-body text-info">
+            <img src="{{photoDTO.photoUrl}}" alt="photoUrl" width="210" height="250"/>
+        </div>
+    </div>
+</div> -->

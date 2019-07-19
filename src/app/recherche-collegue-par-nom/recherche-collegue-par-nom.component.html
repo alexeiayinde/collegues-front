@@ -1,36 +1,33 @@
-<div class="container-fluide">
-    <form>
-        <div class="row align-items-center">
-            <div class="col-2 ml-4">
-                <label for="rechercheParNom">Recherche par nom</label>
-            </div>
-            <div class="col-4">
-                <input type="text" class="form-control" id="rechercheParNom" #saisie placeholder="Rechercher">
-            </div>
-            <div class="col-4">
-                <button type="button" class="btn btn-info" (click)="rechercherParNom(saisie.value)">Rechercher</button>
-            </div>
+<form>
+    <div class="row align-items-center">
+        <div class="col-2 ml-4">
+            <label for="rechercheParNom">Recherche par nom</label>
         </div>
-    </form>
-    <br/>
-    <div class="row ml-4" *ngIf="isError == false; else errorBlock">
-        <div class="alert alert-danger ml-2" role="alert" *ngIf="matriculeExists == false; else matriculeExistsBlock">
-            Collègue(s) introuvable(s) !
+        <div class="col-4">
+            <input type="text" class="form-control" id="rechercheParNom" #saisie placeholder="Rechercher">
         </div>
-        <ng-template #matriculeExistsBlock>
-            <div class="list-group">
-                <a *ngFor="let matricule of listeMatricules" class="list-group-item list-group-item-action " (click)="selectionnerCollegue(matricule)">{{matricule}}
-                </a>
-            </div>
-        </ng-template>
+        <div class="col-4">
+            <button type="button" class="btn btn-info" (click)="rechercherParNom(saisie.value)">Rechercher</button>
+        </div>
     </div>
-
-    <ng-template #errorBlock>
-        <div class="col-8">
-            <div class="alert alert-danger ml-2" role="alert">
-                Erreur de type : {{erreur}}
-            </div>
+</form>
+<br/>
+<div class="row ml-4" *ngIf="isError == false; else errorBlock">
+    <div class="alert alert-danger ml-2" role="alert" *ngIf="matriculeExists == false; else matriculeExistsBlock">
+        Collègue(s) introuvable(s) !
+    </div>
+    <ng-template #matriculeExistsBlock>
+        <div class="list-group">
+            <a *ngFor="let matricule of listeMatricules" class="list-group-item list-group-item-action " (click)="selectionnerCollegue(matricule)">{{matricule}}
+            </a>
         </div>
     </ng-template>
-
 </div>
+
+<ng-template #errorBlock>
+    <div class="col-8">
+        <div class="alert alert-danger ml-2" role="alert">
+            Erreur de type : {{erreur}}
+        </div>
+    </div>
+</ng-template>
