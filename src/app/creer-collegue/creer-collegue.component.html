@@ -4,7 +4,7 @@
             <div class="card-header">
             </div>
             <div class="card-body ">
-                <form #collegueCreer="ngForm">
+                <form class="was-validated" #collegueCreer="ngForm">
                     <div class="row no-gutters">
                         <div class="col-md-4" style="max-width: 180px;">
                             <div class="m-2">
@@ -18,10 +18,8 @@
                                         <strong>Nom</strong>
                                     </div>
                                     <div class="col">
-                                        <input class="mb-1" type="text" name="nom" [(ngModel)]="col.nom" required minlength="3" #nom="ngModel" />
-                                        <p *ngIf="(nom.dirty || nom.touched) && nom.invalid">
-                                            <span class="bg-danger text-white rounded-lg p-1">Le nom est invalide</span>
-                                        </p>
+                                        <input class="form-control mb-1" type="text" name="nom" [(ngModel)]="col.nom" required minlength="2" #nom="ngModel" />
+                                        <div class="invalid-feedback" *ngIf="(nom.dirty || nom.touched) && nom.invalid">Le nom est invalide (au moins 2 caractères)</div>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -29,10 +27,11 @@
                                         <strong>Prénoms</strong>
                                     </div>
                                     <div class="col">
-                                        <input class="mb-1" type="text" name="prenom" [(ngModel)]="col.prenoms" required minlength="3" #prenom="ngModel" />
-                                        <p class="bg-danger text-white rounded-lg p-1" *ngIf="(prenom.dirty || prenom.touched) && prenom.invalid">
-                                            Le(s) prénom(s) est(sont) invalide(s)
-                                        </p>
+                                        <input class="form-control mb-1" type="text" name="prenom" [(ngModel)]="col.prenoms" required minlength="2" #prenom="ngModel"
+                                        />
+                                        <div class="invalid-feedback" *ngIf="(prenom.dirty || prenom.touched) && prenom.invalid">
+                                            Le(s) prénom(s) est(sont) invalide(s) (au moins 2 caractères)
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -40,11 +39,10 @@
                                         <strong>Date de naissance</strong>
                                     </div>
                                     <div class="col">
-                                        <input class="mb-1" type="date" name="dateDeNaissance" [(ngModel)]="col.dateDeNaissance" required #dateDeNaissance="ngModel"
+                                        <input class="form-control mb-1" type="date" name="dateDeNaissance" [(ngModel)]="col.dateDeNaissance" required max="2011-07-20" #dateDeNaissance="ngModel"
                                         />
-                                        <p *ngIf="(dateDeNaissance.dirty || dateDeNaissance.touched) && dateDeNaissance.invalid">
-                                            <span class="bg-danger text-white rounded-lg p-1">La date de naissance est invalide</span>
-                                        </p>
+                                        <div class="invalid-feedback" *ngIf="(dateDeNaissance.dirty || dateDeNaissance.touched) && dateDeNaissance.invalid">La date de naissance est invalide (âge min. = 18 ans)
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -52,10 +50,9 @@
                                         <strong>Email</strong>
                                     </div>
                                     <div class="col">
-                                        <input class="mb-1" type="text" name="email" [(ngModel)]="col.email" required minlength="4" #email="ngModel">
-                                        <p *ngIf="(email.dirty || email.touched) && email.invalid">
-                                            <span class="bg-danger text-white rounded-lg p-1">L'email est invalide</span>
-                                        </p>
+                                        <input class="form-control mb-1" type="text" name="email" [(ngModel)]="col.email" required pattern="[0-9a-z._%+-]+@[0-9a-z.-]+\.[a-z]{2,4}$" minlength="3" #email="ngModel">
+                                        <div class="invalid-feedback" *ngIf="(email.dirty || email.touched) && email.invalid">L'email est invalide (format requis x@x.xx)
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -63,10 +60,9 @@
                                         <strong>PhotoUrl</strong>
                                     </div>
                                     <div class="col">
-                                        <input class="mb-1" type="text" name="photoUrl" [(ngModel)]="col.photoUrl" required minlength="7" #photoUrl="ngModel" />
-                                        <p *ngIf="(photoUrl.dirty || photoUrl.touched) && photoUrl.invalid">
-                                            <span class="bg-danger text-white rounded-lg p-1">La photoUrl est invalide</span>
-                                        </p>
+                                        <input class="form-control mb-1" type="text" name="photoUrl" [(ngModel)]="col.photoUrl" required pattern="https?://.+" minlength="7" #photoUrl="ngModel"
+                                        />
+                                        <div class="invalid-feedback" *ngIf="(photoUrl.dirty || photoUrl.touched) && photoUrl.invalid">La photoUrl est invalide (au moins 7 caractères commençant par 'http')</div>
                                     </div>
                                 </div>
                             </div>
