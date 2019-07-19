@@ -19,7 +19,7 @@
         </div>
         <ng-template #matriculeExistsBlock>
             <div class="list-group">
-                <a *ngFor="let matricule of listeMatricules" href="#" class="list-group-item list-group-item-action " (click)="selectionnerCollegue(matricule)">{{matricule}}
+                <a *ngFor="let matricule of listeMatricules" class="list-group-item list-group-item-action " (click)="selectionnerCollegue(matricule)">{{matricule}}
                 </a>
             </div>
         </ng-template>
