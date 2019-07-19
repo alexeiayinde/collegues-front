@@ -13,10 +13,12 @@ import { MenuComponent } from './menu/menu.component';
 import { GalerieComponent } from './galerie/galerie.component';
 import { AProposComponent } from './apropos/apropos.component';
 import { AccueilComponent } from './accueil/accueil.component';
+import { CollegueGallerieComponent } from './collegue-gallerie/collegue-gallerie.component';
 
 const ROUTES:Routes = [
   { path: 'accueil', component: AccueilComponent},
   { path: 'galerie', component: GalerieComponent},
+  { path: 'galerie/:matricule', component: CollegueGallerieComponent},
   { path: 'apropos', component: AProposComponent},
   { path: '', pathMatch: 'full', redirectTo:'accueil'}
 ]
@@ -31,6 +33,7 @@ const ROUTES:Routes = [
     GalerieComponent,
     AProposComponent,
     AccueilComponent,
+    CollegueGallerieComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,54 @@
+<div class="row justify-content-center" *ngIf="collegue != undefined">
+    <div class="card text-white bg-info mb-3" style="max-width: 30rem;">
+        <div class="card-header">
+            <strong>{{collegue.nom | uppercase}}</strong> {{collegue.prenoms}}</div>
+        <div class="card-body">
+            <div class="row justify-content-center">
+                <img src="{{collegue.photoUrl}}" alt="photoUrl" width="280" height="340" />
+            </div>
+            <div class="row mt-3 mb-3">
+                <div class="col-6">
+                    <strong>Matricule</strong>
+                </div>
+                <div class="col-6">
+                    {{collegue.matricule}}
+                </div>
+            </div>
+            <div class="row mt-3 mb-3">
+                <div class="col-6">
+                    <strong>Nom</strong>
+                </div>
+                <div class="col-6">
+                    {{collegue.nom | uppercase}}
+                </div>
+            </div>
+            <div class="row mt-3 mb-3">
+                <div class="col-6">
+                    <strong>Prénoms</strong>
+                </div>
+                <div class="col-6">
+                    {{collegue.prenoms}}
+                </div>
+            </div>
+            <div class="row mt-3 mb-3">
+                <div class="col-6">
+                    <strong>Date de naissance</strong>
+                </div>
+                <div class="col-6">
+                    {{collegue.dateDeNaissance | date:'dd/MM/yyyy'}}
+                </div>
+            </div>
+            <div class="row mt-3 mb-3">
+                <div class="col-6">
+                    <strong>Email</strong>
+                </div>
+                <div class="col-6">
+                    {{collegue.email}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="d-flex justify-content-center m-1">
+    <button class="btn btn-info" routerLink="/galerie">Retour à la galerie</button>
+</div>
