@@ -14,19 +14,19 @@
                         <div class="col-md-8">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col">
+                                    <div class="col-6">
                                         <strong>Nom</strong>
                                     </div>
-                                    <div class="col">
+                                    <div class="col-6">
                                         <input class="form-control mb-1" type="text" name="nom" [(ngModel)]="col.nom" required minlength="2" #nom="ngModel" />
                                         <div class="invalid-feedback mb-1" *ngIf="(nom.dirty || nom.touched) && nom.invalid">Le nom est invalide (au moins 2 caractères)</div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col">
+                                    <div class="col-6">
                                         <strong>Prénoms</strong>
                                     </div>
-                                    <div class="col">
+                                    <div class="col-6">
                                         <input class="form-control mb-1" type="text" name="prenom" [(ngModel)]="col.prenoms" required minlength="2" #prenom="ngModel"
                                         />
                                         <div class="invalid-feedback mb-1" *ngIf="(prenom.dirty || prenom.touched) && prenom.invalid">
@@ -35,10 +35,10 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col">
+                                    <div class="col-6">
                                         <strong>Date de naissance</strong>
                                     </div>
-                                    <div class="col"> <!-- TODO date de naissance required mais empeche pas cliquer sur bouton 'Créer' -->
+                                    <div class="col-6"> <!-- TODO date de naissance required mais empeche pas cliquer sur bouton 'Créer' -->
                                         <input class="form-control mb-1" type="date" name="dateDeNaissance" [(ngModel)]="col.dateDeNaissance" required max="2011-07-20" #dateDeNaissance="ngModel"
                                         />
                                         <div class="invalid-feedback mb-1" *ngIf="(dateDeNaissance.dirty || dateDeNaissance.touched) && dateDeNaissance.invalid">La date de naissance est invalide (âge min. = 18 ans)
@@ -46,20 +46,20 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col">
+                                    <div class="col-6">
                                         <strong>Email</strong>
                                     </div>
-                                    <div class="col">
+                                    <div class="col-6">
                                         <input class="form-control mb-1" type="text" name="email" [(ngModel)]="col.email" required pattern="[0-9a-z._%+-]+@[0-9a-z.-]+\.[a-z]{2,4}$" minlength="3" #email="ngModel">
                                         <div class="invalid-feedback mb-1" *ngIf="(email.dirty || email.touched) && email.invalid">L'email est invalide (format requis x@x.xx)
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col">
+                                    <div class="col-6">
                                         <strong>PhotoUrl</strong>
                                     </div>
-                                    <div class="col">
+                                    <div class="col-6">
                                         <input class="form-control mb-1" type="text" name="photoUrl" [(ngModel)]="col.photoUrl" required pattern="https?://.+" minlength="7" #photoUrl="ngModel"
                                         />
                                         <div class="invalid-feedback mb-1" *ngIf="(photoUrl.dirty || photoUrl.touched) && photoUrl.invalid">La photoUrl est invalide (au moins 7 caractères commençant par 'http(s)://')</div>

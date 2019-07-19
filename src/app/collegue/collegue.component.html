@@ -15,42 +15,42 @@
                             <div class="col-md-8">
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col">
+                                        <div class="col-6">
                                             <strong>Matricule</strong>
                                         </div>
-                                        <div class="col">
+                                        <div class="col-6">
                                             {{col.matricule}}
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col">
+                                        <div class="col-6">
                                             <strong>Nom</strong>
                                         </div>
-                                        <div class="col">
+                                        <div class="col-6">
                                             {{col.nom | uppercase}}
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col">
+                                        <div class="col-6">
                                             <strong>Prénoms</strong>
                                         </div>
-                                        <div class="col">
+                                        <div class="col-6">
                                             {{col.prenoms}}
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col">
+                                        <div class="col-6">
                                             <strong>Date de naissance</strong>
                                         </div>
-                                        <div class="col">
+                                        <div class="col-6">
                                             {{col.dateDeNaissance | date:'dd/MM/yyyy'}}
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col">
+                                        <div class="col-6">
                                             <strong>Email</strong>
                                         </div>
-                                        <div class="col">
+                                        <div class="col-6">
                                             <div *ngIf="phaseModifier == true; else elseModifier">
                                                 <input class="mb-1" type="text" name="email" [(ngModel)]="col.email" value="{{col.email}}" required minlength="3" #email="ngModel">
                                                 <p *ngIf="email.invalid">
@@ -63,12 +63,12 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col">
+                                        <div class="col-6">
                                             <div *ngIf="phaseModifier == true">
                                                 <strong>PhotoUrl</strong>
                                             </div>
                                         </div>
-                                        <div class="col">
+                                        <div class="col-6">
                                             <div *ngIf="phaseModifier == true">
                                                 <input class="mb-1" type="text" name="photoUrl" [(ngModel)]="col.photoUrl" value="{{col.photoUrl}}" required minlength="7"
                                                     #photoUrl="ngModel" />
@@ -81,17 +81,16 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="d-flex justify-content-center m-1">
-                            <div *ngIf="phaseModifier == true; else elseBouton">
-                                <button [disabled]="collegueModifier.invalid" type="submit" class="btn btn-info">Valider</button>
-                                <!-- <p *ngIf="collegueModifier.invalid">
-                                Au moins un champ du formulaire est invalide.
-                            </p> -->
-                            </div>
-                            <ng-template #elseBouton>
-                                <button type="button" class="btn btn-info" (click)="modifierCollegue()">Modifier</button>
-                            </ng-template>
+                        <div class="d-flex justify-content-around en m-1" *ngIf="phaseModifier == true; else elseBouton">
+                            <button [disabled]="collegueModifier.invalid" type="submit" class="btn btn-info">Valider</button>
+                            <!-- <button class="btn btn-info">Annuler</button> -->
                         </div>
+                        <ng-template #elseBouton>
+                            <div class="d-flex justify-content-around en m-1">
+                                <button type="button" class="btn btn-info" (click)="modifierCollegue()">Modifier</button>
+                            </div>
+                        </ng-template>
+
                     </form>
                 </div>
             </div>
