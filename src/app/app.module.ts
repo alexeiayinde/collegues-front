@@ -14,13 +14,18 @@ import { GalerieComponent } from './galerie/galerie.component';
 import { AProposComponent } from './apropos/apropos.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import { CollegueGallerieComponent } from './collegue-gallerie/collegue-gallerie.component';
+import { LoginComponent } from './login/login.component';
+import { LogoutComponent } from './logout/logout.component';
+import { AuthGuard } from './services/auth.guard';
 
 const ROUTES:Routes = [
-  { path: 'accueil', component: AccueilComponent},
-  { path: 'galerie', component: GalerieComponent},
-  { path: 'galerie/:matricule', component: CollegueGallerieComponent},
-  { path: 'apropos', component: AProposComponent},
-  { path: '', pathMatch: 'full', redirectTo:'accueil'}
+  { path: 'login', component: LoginComponent},
+  { path: 'logout', component: LogoutComponent},
+  { path: 'accueil', canActivate: [AuthGuard], component: AccueilComponent},
+  { path: 'galerie', canActivate: [AuthGuard], component: GalerieComponent},
+  { path: 'galerie/:matricule', canActivate: [AuthGuard], component: CollegueGallerieComponent},
+  { path: 'apropos', canActivate: [AuthGuard], component: AProposComponent},
+  { path: '', pathMatch: 'full', redirectTo:'login'}
 ]
 
 @NgModule({
@@ -34,6 +39,8 @@ const ROUTES:Routes = [
     AProposComponent,
     AccueilComponent,
     CollegueGallerieComponent,
+    LoginComponent,
+    LogoutComponent,
   ],
   imports: [
     BrowserModule,
