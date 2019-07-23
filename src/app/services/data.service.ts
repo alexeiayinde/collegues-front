@@ -23,19 +23,19 @@ export class DataService {
   constructor(private httpClient: HttpClient) { }
 
   rechercherParNom(nom: string): Observable<string[]> {
-    return this.httpClient.get<string[]>(URL_BACKEND + '?nom=' + nom, { withCredentials: true });
+    return this.httpClient.get<string[]>(URL_BACKEND + '/collegues?nom=' + nom, { withCredentials: true });
   }
 
   recupererCollegueCourant(matricule: string): Observable<Collegue> {
-    return this.httpClient.get<Collegue>(URL_BACKEND + '/' + matricule, { withCredentials: true });
+    return this.httpClient.get<Collegue>(URL_BACKEND + '/collegues/' + matricule, { withCredentials: true });
   }
 
   modifierCollegue(matricule: string, collegue: Collegue) {
-    return this.httpClient.patch<Collegue>(URL_BACKEND + '/' + matricule, collegue, { withCredentials: true });
+    return this.httpClient.patch<Collegue>(URL_BACKEND + '/collegues/' + matricule, collegue, { withCredentials: true });
   }
 
   creerCollegue(collegue: Collegue): Observable<Collegue> {
-    return this.httpClient.post<Collegue>(URL_BACKEND, {
+    return this.httpClient.post<Collegue>(URL_BACKEND + '/collegues', {
       "nom": collegue.nom,
       "prenoms": collegue.prenoms,
       "email": collegue.email,
@@ -45,7 +45,7 @@ export class DataService {
   }
 
   rechercherPhotos(): Observable<PhotoDTO[]> {
-    return this.httpClient.get<PhotoDTO[]>(URL_BACKEND + '/photos', { withCredentials: true });
+    return this.httpClient.get<PhotoDTO[]>(URL_BACKEND + '/collegues/photos', { withCredentials: true });
   }
 
 }

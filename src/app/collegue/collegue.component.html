@@ -86,8 +86,10 @@
                             <!-- <button class="btn btn-info">Annuler</button> -->
                         </div>
                         <ng-template #elseBouton>
-                            <div class="d-flex justify-content-around en m-1">
-                                <button type="button" class="btn btn-info" (click)="modifierCollegue()">Modifier</button>
+                            <div *ngIf="roles.includes('ROLE_ADMIN')">
+                                <div class="d-flex justify-content-around en m-1">
+                                    <button type="button" class="btn btn-info" (click)="modifierCollegue()">Modifier</button>
+                                </div>
                             </div>
                         </ng-template>
 
@@ -104,7 +106,7 @@
         </ng-template>
 
         <div class="col-4 ml-3 mt-4">
-            <div *ngIf="phaseModifier == false">
+            <div *ngIf="phaseModifier == false && roles.includes('ROLE_ADMIN')">
                 <button class="btn btn-link" (click)="creerCollegue()">Créer un nouveau collègue</button>
             </div>
         </div>

@@ -5,6 +5,9 @@ export default class Collegue {
     private _email:string;
     private _dateDeNaissance:Date;
     private _photoUrl:string;
+    private _nomUtilisateur?:string;
+    private _motDePasse?:string;
+    private _roles?:string[];
 
     constructor(nom:string, prenoms:string, email:string, dateDeNaissance:Date, photoUrl:string) {
         this._nom=nom;
@@ -32,6 +35,15 @@ export default class Collegue {
     get photoUrl() {
         return this._photoUrl;
     }
+    get nomUtilisateur() {
+        return this._nomUtilisateur;
+    }
+    get motDePasse() {
+        return this._motDePasse;
+    }
+    get roles() {
+        return this._roles;
+    }
     set matricule(matricule:string) {
         this._matricule = matricule;
     }
@@ -49,5 +61,14 @@ export default class Collegue {
     }
     set photoUrl(photoUrl:string) {
         this._photoUrl = photoUrl;
+    }
+    set nomUtilisateur(nomUtilisateur:string) {
+        this._nomUtilisateur = nomUtilisateur;
+    }
+    set motDePasse(motDePasse:string) {
+        this._motDePasse = motDePasse;
+    }
+    set roles(roles:string[]) {
+        this._roles = roles;
     }
 }

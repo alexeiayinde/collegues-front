@@ -22,17 +22,17 @@ export class AuthService {
   constructor(private httpClient: HttpClient) { }
 
   authentifier(nomUtilisateur: string, motDePasse: string) {
-    return this.httpClient.post(URL_BACKEND + '/auth', {
+    return this.httpClient.post(URL_BACKEND + '/collegues/auth', {
       "nomUtilisateur": nomUtilisateur,
       "motDePasse": motDePasse
     }, { withCredentials: true });
   }
 
   logout() {
-    return this.httpClient.post('http://localhost:8080/logout', {}, { withCredentials: true })
+    return this.httpClient.post(URL_BACKEND + '/logout', {}, { withCredentials: true })
   }
 
   isLoggedIn(): Observable<Collegue> {
-    return this.httpClient.get<Collegue>(URL_BACKEND + '/me', { withCredentials: true })
+    return this.httpClient.get<Collegue>(URL_BACKEND + '/collegues/me', { withCredentials: true })
   }
 }
