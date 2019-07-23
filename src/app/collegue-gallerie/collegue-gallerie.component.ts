@@ -12,26 +12,22 @@ import { Subscription } from 'rxjs';
 })
 export class CollegueGallerieComponent implements OnInit {
 
-  matricule:string;
-  collegue:Collegue;
-  erreur:string;
-  actionSub:Subscription;
+  matricule: string;
+  collegue: Collegue;
+  erreur: string;
 
-  constructor(private route: ActivatedRoute, private _serv:DataService) { }
+  constructor(private route: ActivatedRoute, private _serv: DataService) { }
 
   ngOnInit() {
-    this.actionSub = this.route.paramMap.subscribe((params:ParamMap) => {
+    this.route.paramMap.subscribe((params: ParamMap) => {
       this.matricule = params.get('matricule');
       this._serv.recupererCollegueCourant(this.matricule).subscribe(collegue => {
         this.collegue = collegue;
       },
-      (error:HttpErrorResponse) => {
-        this.erreur = error.status + ' - ' + error.error;
-      })
+        (error: HttpErrorResponse) => {
+          this.erreur = error.status + ' - ' + error.error;
+        })
     })
   }
 
-  ngOnDestroy(): void {
-    this.actionSub.unsubscribe();
-  }
 }

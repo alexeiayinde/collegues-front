@@ -16,7 +16,6 @@ export class CreerCollegueComponent implements OnInit {
   isError:boolean;
   creerOk:boolean;
   erreur:string;
-  actionSub: Subscription;
 
   @Output() isCreer:EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -51,11 +50,5 @@ export class CreerCollegueComponent implements OnInit {
     annuler() {
       this.isCreer.emit(true);
     }
-
-  ngOnDestroy() {
-    if (this.actionSub != undefined) {
-      this.actionSub.unsubscribe();
-    }
-  }
 
 }

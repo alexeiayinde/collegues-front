@@ -20,7 +20,7 @@ import { AuthGuard } from './services/auth.guard';
 
 const ROUTES:Routes = [
   { path: 'login', component: LoginComponent},
-  { path: 'logout', component: LogoutComponent},
+  { path: 'logout', canActivate: [AuthGuard], component: LogoutComponent},
   { path: 'accueil', canActivate: [AuthGuard], component: AccueilComponent},
   { path: 'galerie', canActivate: [AuthGuard], component: GalerieComponent},
   { path: 'galerie/:matricule', canActivate: [AuthGuard], component: CollegueGallerieComponent},

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient, HttpResponse, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import Collegue from '../models/Collegue';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 const URL_BACKEND = environment.backendUrl;
 
@@ -10,6 +10,14 @@ const URL_BACKEND = environment.backendUrl;
   providedIn: 'root'
 })
 export class AuthService {
+
+  private subMenuLog = new Subject<boolean>();
+  publierMenuLog(isLoggedIn:boolean) {
+    this.subMenuLog.next(isLoggedIn);
+  }
+  abonnementMenuLog(): Observable<boolean> {
+    return this.subMenuLog.asObservable();
+  }
 
   constructor(private httpClient: HttpClient) { }
 

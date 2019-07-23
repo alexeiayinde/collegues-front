@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
     this.authService.authentifier(this.nomUtilisateur, this.motDePasse)
     .subscribe(() => {
       this.router.navigate(['/accueil']);
+      this.authService.publierMenuLog(true);
     }
     , (error:HttpErrorResponse) => {
       this.isError = true;

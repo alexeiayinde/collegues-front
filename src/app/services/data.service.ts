@@ -13,14 +13,12 @@ const URL_BACKEND = environment.backendUrl;
 export class DataService {
 
   private subMatriculeSelectionne = new Subject<string>();
-
   publier(matricule: string) {
     this.subMatriculeSelectionne.next(matricule);
   }
-
   abonnement(): Observable<string> {
     return this.subMatriculeSelectionne.asObservable();
-  }
+  }  
 
   constructor(private httpClient: HttpClient) { }
 
