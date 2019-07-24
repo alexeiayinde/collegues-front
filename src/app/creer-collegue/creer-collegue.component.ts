@@ -27,7 +27,7 @@ export class CreerCollegueComponent implements OnInit {
   }
 
   creer() {
-    this.actionSub = this._serv.creerCollegue(this.col)
+    this._serv.creerCollegue(this.col)
     .subscribe(collegue => {
       this.creerOk = true;
       this.isError = false;

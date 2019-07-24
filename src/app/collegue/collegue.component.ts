@@ -19,7 +19,8 @@ export class CollegueComponent implements OnInit, OnDestroy {
   col: Collegue;
   isError: boolean = false;
   erreur: string;
-  actionSub: Subscription;
+  actionSub:Subscription;
+  actionSub2: Subscription;
   roles: string[];
 
   constructor(private _serv: DataService, private authService: AuthService) { }
@@ -28,7 +29,7 @@ export class CollegueComponent implements OnInit, OnDestroy {
     this.authService.isLoggedIn().subscribe((collegue) => {
       this.roles = collegue.roles;
       this.phaseCreer = false;
-      this.actionSub = this._serv.abonnement().subscribe(matricule => {
+      this.actionSub2 = this._serv.abonnement().subscribe(matricule => {
         this.matricule = matricule;
         this._serv.recupererCollegueCourant(this.matricule)
           .subscribe(collegue => {
@@ -73,6 +74,7 @@ export class CollegueComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.actionSub.unsubscribe();
+    this.actionSub2.unsubscribe();
   }
 
 }
