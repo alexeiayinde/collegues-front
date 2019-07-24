@@ -26,7 +26,7 @@ export class CollegueComponent implements OnInit, OnDestroy {
   constructor(private _serv: DataService, private authService: AuthService) { }
 
   ngOnInit() {
-    this.authService.isLoggedIn().subscribe((collegue) => {
+    this.actionSub = this.authService.isLoggedIn().subscribe((collegue) => {
       this.roles = collegue.roles;
       this.phaseCreer = false;
       this.actionSub2 = this._serv.abonnement().subscribe(matricule => {
